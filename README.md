@@ -2,9 +2,9 @@
 Tips for manually detect &amp; exploit SQL injection Vulnerability : MySQL
 
 # Comment in MySQL <br>
-1.  # <br>
+1.  \# <br>
 2.  -- (After double dash put space) <br>
-3.  /**/  <br>
+3.  /\*\*/  <br>
  Ex: SELECT * from users/**/WHERE username='rk' AND password='123'; /*SQL keyword is case insansitive */  <br>
  
  # MySQL LIMIT Clause  <br>
