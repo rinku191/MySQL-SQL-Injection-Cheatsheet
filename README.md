@@ -26,11 +26,11 @@ Ex: SELECT * FROM products WHERE id = 1; DROP users-- /* stack query example */ 
 # Substring  <br>
   1. SUBSTRING('MySQL', 3, 2)  <br>
 
-# String without quote(' or ")
-1. using CONCAT function
-Ex: SELECT CONCAT(CHAR(77),CHAR(89),CHAR(83),CHAR(81),CHAR(76)); /* return MYSQL string */ 
-2. using hex value
-Ex: SELECT 0x4d7953514c;  /* return MYSQL string */ 
+# String without quote(' or ") <br>
+1. using CONCAT function <br>
+Ex: SELECT CONCAT(CHAR(77),CHAR(89),CHAR(83),CHAR(81),CHAR(76)); /* return MYSQL string */  <br>
+2. using hex value <br>
+Ex: SELECT 0x4d7953514c;  /* return MYSQL string */  <br>
 
 # Database version <br>
 1. SELECT @@version <br>
