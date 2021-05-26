@@ -53,7 +53,7 @@ Ex: SELECT * FROM information_schema.columns WHERE table_name = 'TABLE_NAME'; <b
 
 # Order by <br>
 1. The ORDER BY keyword is used to sort the result-set in ascending or descending order. But these keywords are used to identify no of columns present in table. <br>
-Ex: SELECT * FROM Customers ORDER by 7; /* if there are 6 columns in table this query give SQL error. */ <br>
+Ex: SELECT * FROM Customers ORDER by 7; /* if there are 6 columns in table this query gives SQL error. */ <br>
 
 # Time Delay
 Ex 1: SELECT sleep(10)  /* Sleep for 10 sec */ <br>
