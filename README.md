@@ -51,6 +51,10 @@ Ex: SELECT * FROM information_schema.tables; <br>
 2. electing all the columns in perticular table <br>
 Ex: SELECT * FROM information_schema.columns WHERE table_name = 'TABLE_NAME'; <br>
 
+# Order by <br>
+1. The ORDER BY keyword is used to sort the result-set in ascending or descending order. But these keywords are used to identify no of columns present in table. <br>
+Ex: SELECT * FROM Customers ORDER by 7; /* if there are 6 columns in table this query give SQL error. */ <br>
+
 # Time Delay
 Ex 1: SELECT sleep(10)  /* Sleep for 10 sec */ <br>
 Ex 2: SELECT IF(CONDITION-HERE,sleep(10),'a'  /* Sleep for 10 sec if codition is True*/ <br>
