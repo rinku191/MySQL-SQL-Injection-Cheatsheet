@@ -117,5 +117,5 @@ Ex 2. SELECT IF(1=1,sleep(10),'a'); <br>
 9. ' & 2=2 # <br>
 
 # Data Exfiltration
-Case 1: 
+Coming------
     
