@@ -51,14 +51,14 @@ Ex 2:SELECT system_user(); <br>
 Ex: SELECT host, user FROM mysql.user WHERE Super_priv = 'Y'; <br>
 
 # Database contents <br>
-1. Selecting all the tables in MySQL along with DB <br>
+1. Selecting all the tables along with DB <br>
 Ex: SELECT * FROM information_schema.tables; <br>
 
-2. electing all the columns in perticular table <br>
+2. Selecting all the columns in perticular table <br>
 Ex: SELECT * FROM information_schema.columns WHERE table_name = 'TABLE_NAME'; <br>
 # Order by <br>
 1. The ORDER BY keyword is used to sort the result-set in ascending or descending order. But these keywords are used to identify no of columns present in table. <br>
-Ex: SELECT * FROM Customers ORDER by 7; /* if columns are less than 7 in the table. query gives SQL error. Check on less than 7 values until error resolved.  */ <br>
+Ex: SELECT * FROM Customers ORDER by 7; /* if columns are less than 7 in the table query gives SQL error. Check less than 7 values until error resolved.  */ <br>
 
 # Time Delay <br>
 Ex 1: SELECT sleep(10)  /* Sleep for 10 sec */ <br>
@@ -69,20 +69,20 @@ Ex 2: SELECT IF(CONDITION-HERE,sleep(10),'a'  /* Sleep for 10 sec if codition is
 Case 1: When source code is available. <br>
 
 Try to find out dynamic query where user inputs are concatenating to SQL query without/partial sanitizing user's input. Some time developer does mistake to concatenate user input into query while using parameterize SQL query. <br>
-Ex 1: <br>
-$username = $_POST["username"]; <br>
-$password = $_POST["password"]; <br>
-$sql="SELECT * FROM users WHERE username = '$username' AND password = '$password'"; <br>
+Ex 1: No parameterized query<br>
+**$username** = $_POST["username"]; <br>
+**$password** = $_POST["password"]; <br>
+$sql="SELECT * FROM users WHERE username = **'$username'** AND password = **'$password'**"; <br>
 $result = mysql_query($sql, $link); <br>
 <br>
 
 Ex 2: parameterized query <br>
-$firstname = $_POST["firstname"]; <br>
+**$firstname** = $_POST["firstname"]; <br>
 $lastname = $_POST["lastname"]; <br>
 $email = $_POST["email"]; <br>
 
 $stmt = $conn->prepare("INSERT INTO MyGuests (firstname, lastname, email) <br>
-VALUES ($firstname, :lastname, :email)"); /* Userinput "firstname" is directly concatenated into quey. So snippet is vulnerable to SQL Injection */  <br>
+VALUES (**$firstname**, :lastname, :email)"); /* Userinput **"firstname"** is directly concatenated into quey. So snippet is vulnerable to SQL Injection */  <br>
 $stmt->bindParam(':lastname', $lastname); <br>
 $stmt->bindParam(':email', $email); <br>
 <br>
